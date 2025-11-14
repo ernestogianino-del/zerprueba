@@ -208,7 +208,7 @@
 
         <p id="orderConfirmation"
            class="hidden text-[11px] text-emerald-700 mt-3 bg-emerald-50 border border-emerald-100 rounded-lg px-3 py-2">
-          Te enviamos por correo el método de pago y la orden de compra.
+          Tu correo con la orden de compra y métodos de pago fue enviado exitosamente. Revisa tu bandeja de entrada (y spam) para realizar el pago.
         </p>
       </form>
     </div>
@@ -245,102 +245,30 @@
      * DATOS PRODUCTOS *
      *******************/
     const products = [
-      {
-        id: "p1",
-        name: "Sinergia Felicidad",
-        size: "10 ml",
-        price: 30,
-        image:
-          "https://images.pexels.com/photos/3736402/pexels-photo-3736402.jpeg?auto=compress&cs=tinysrgb&w=800",
-      },
-      {
-        id: "p2",
-        name: "Sinergia Equilibrio",
-        size: "10 ml",
-        price: 30,
-        image:
-          "https://images.pexels.com/photos/3738374/pexels-photo-3738374.jpeg?auto=compress&cs=tinysrgb&w=800",
-      },
-      {
-        id: "p3",
-        name: "Sinergia Creatividad",
-        size: "10 ml",
-        price: 30,
-        image:
-          "https://images.pexels.com/photos/3738340/pexels-photo-3738340.jpeg?auto=compress&cs=tinysrgb&w=800",
-      },
-      {
-        id: "p4",
-        name: "Sinergia Tranquilidad",
-        size: "10 ml",
-        price: 30,
-        image:
-          "https://images.pexels.com/photos/3736401/pexels-photo-3736401.jpeg?auto=compress&cs=tinysrgb&w=800",
-      },
-      {
-        id: "p5",
-        name: "Aceite Esencial Just Lavanda",
-        size: "10 ml",
-        price: 90,
-        image:
-          "https://images.pexels.com/photos/965989/pexels-photo-965989.jpeg?auto=compress&cs=tinysrgb&w=800",
-      },
-      {
-        id: "p6",
-        name: "Aceite Esencial Just Neroli",
-        size: "10 ml",
-        price: 90,
-        image:
-          "https://images.pexels.com/photos/3735712/pexels-photo-3735712.jpeg?auto=compress&cs=tinysrgb&w=800",
-      },
-      {
-        id: "p7",
-        name: "Aceite Esencial Just Tea Tree",
-        size: "10 ml",
-        price: 90,
-        image:
-          "https://images.pexels.com/photos/965981/pexels-photo-965981.jpeg?auto=compress&cs=tinysrgb&w=800",
-      },
-      {
-        id: "p8",
-        name: "Aceite Esencial Just Tomillo",
-        size: "10 ml",
-        price: 90,
-        image:
-          "https://images.pexels.com/photos/965989/pexels-photo-965989.jpeg?auto=compress&cs=tinysrgb&w=800",
-      },
-      {
-        id: "p9",
-        name: "Aceite Esencial Just Naranja",
-        size: "10 ml",
-        price: 90,
-        image:
-          "https://images.pexels.com/photos/965989/pexels-photo-965989.jpeg?auto=compress&cs=tinysrgb&w=800",
-      },
-      {
-        id: "p10",
-        name: "Aceite Esencial Just Tres Mentas",
-        size: "10 ml",
-        price: 90,
-        image:
-          "https://images.pexels.com/photos/965991/pexels-photo-965991.jpeg?auto=compress&cs=tinysrgb&w=800",
-      },
-      {
-        id: "p11",
-        name: "Aceite Esencial Just Bergamota",
-        size: "10 ml",
-        price: 90,
-        image:
-          "https://images.pexels.com/photos/965989/pexels-photo-965989.jpeg?auto=compress&cs=tinysrgb&w=800",
-      },
-      {
-        id: "p12",
-        name: "Aceite Esencial Just Tomillo Plus",
-        size: "10 ml",
-        price: 90,
-        image:
-          "https://images.pexels.com/photos/965989/pexels-photo-965989.jpeg?auto=compress&cs=tinysrgb&w=800",
-      },
+      { id: "p1", name: "Sinergia Felicidad", size: "10 ml", price: 30,
+        image: "https://images.pexels.com/photos/3736402/pexels-photo-3736402.jpeg?auto=compress&cs=tinysrgb&w=800" },
+      { id: "p2", name: "Sinergia Equilibrio", size: "10 ml", price: 30,
+        image: "https://images.pexels.com/photos/3738374/pexels-photo-3738374.jpeg?auto=compress&cs=tinysrgb&w=800" },
+      { id: "p3", name: "Sinergia Creatividad", size: "10 ml", price: 30,
+        image: "https://images.pexels.com/photos/3738340/pexels-photo-3738340.jpeg?auto=compress&cs=tinysrgb&w=800" },
+      { id: "p4", name: "Sinergia Tranquilidad", size: "10 ml", price: 30,
+        image: "https://images.pexels.com/photos/3736401/pexels-photo-3736401.jpeg?auto=compress&cs=tinysrgb&w=800" },
+      { id: "p5", name: "Aceite Esencial Just Lavanda", size: "10 ml", price: 90,
+        image: "https://images.pexels.com/photos/965989/pexels-photo-965989.jpeg?auto=compress&cs=tinysrgb&w=800" },
+      { id: "p6", name: "Aceite Esencial Just Neroli", size: "10 ml", price: 90,
+        image: "https://images.pexels.com/photos/3735712/pexels-photo-3735712.jpeg?auto=compress&cs=tinysrgb&w=800" },
+      { id: "p7", name: "Aceite Esencial Just Tea Tree", size: "10 ml", price: 90,
+        image: "https://images.pexels.com/photos/965981/pexels-photo-965981.jpeg?auto=compress&cs=tinysrgb&w=800" },
+      { id: "p8", name: "Aceite Esencial Just Tomillo", size: "10 ml", price: 90,
+        image: "https://images.pexels.com/photos/965989/pexels-photo-965989.jpeg?auto=compress&cs=tinysrgb&w=800" },
+      { id: "p9", name: "Aceite Esencial Just Naranja", size: "10 ml", price: 90,
+        image: "https://images.pexels.com/photos/965989/pexels-photo-965989.jpeg?auto=compress&cs=tinysrgb&w=800" },
+      { id: "p10", name: "Aceite Esencial Just Tres Mentas", size: "10 ml", price: 90,
+        image: "https://images.pexels.com/photos/965991/pexels-photo-965991.jpeg?auto=compress&cs=tinysrgb&w=800" },
+      { id: "p11", name: "Aceite Esencial Just Bergamota", size: "10 ml", price: 90,
+        image: "https://images.pexels.com/photos/965989/pexels-photo-965989.jpeg?auto=compress&cs=tinysrgb&w=800" },
+      { id: "p12", name: "Aceite Esencial Just Tomillo Plus", size: "10 ml", price: 90,
+        image: "https://images.pexels.com/photos/965989/pexels-photo-965989.jpeg?auto=compress&cs=tinysrgb&w=800" },
     ];
 
     /*******************
@@ -357,19 +285,14 @@
 
         card.innerHTML = `
           <div class="aspect-[3/4] bg-stone-200">
-            <img src="${p.image}"
-                 alt="${p.name}"
-                 class="w-full h-full object-cover" />
+            <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover" />
           </div>
           <div class="px-3 py-2 mt-auto">
             <p class="text-[10px] tracking-[0.25em] uppercase text-stone-500">${p.size}</p>
             <h3 class="mt-1 text-sm font-semibold text-stone-800">${p.name}</h3>
             <div class="mt-2 flex items-center justify-between">
-              <span class="text-xs tracking-[0.25em] uppercase text-stone-600">S/ ${p.price.toFixed(
-                2
-              )}</span>
-              <button
-                data-id="${p.id}"
+              <span class="text-xs tracking-[0.25em] uppercase text-stone-600">S/ ${p.price.toFixed(2)}</span>
+              <button data-id="${p.id}"
                 class="addToCart text-[10px] uppercase tracking-[0.2em] border border-stone-400 px-2 py-1 rounded-full hover:bg-stone-900 hover:text-white">
                 Agregar
               </button>
@@ -379,7 +302,6 @@
         productsGrid.appendChild(card);
       });
 
-      // Listeners "Agregar"
       document.querySelectorAll(".addToCart").forEach((btn) =>
         btn.addEventListener("click", () => {
           const id = btn.getAttribute("data-id");
@@ -444,9 +366,7 @@
           <div>
             <p class="text-sm font-medium">${product.name}</p>
             <p class="text-xs text-stone-500">${product.size}</p>
-            <p class="text-xs text-stone-600 mt-1">S/ ${product.price.toFixed(
-              2
-            )} c/u</p>
+            <p class="text-xs text-stone-600 mt-1">S/ ${product.price.toFixed(2)} c/u</p>
           </div>
           <div class="text-right">
             <div class="flex items-center justify-end gap-1 mb-1">
@@ -543,10 +463,9 @@
     });
 
     /*************************
-     * ENVÍO POR CORREO (mailto)
-     * Aquí se arma la ORDEN
+     * ENVÍO POR CORREO (Apps Script)
      *************************/
-    orderForm.addEventListener("submit", (e) => {
+    orderForm.addEventListener("submit", async (e) => {
       e.preventDefault();
 
       const name = document.getElementById("customerName").value.trim();
@@ -573,38 +492,40 @@
         orderLines += `• ${product.name} (${product.size}) x${qty} = S/ ${lineTotal.toFixed(2)}\n`;
       });
 
-      let bodyText = "";
-      bodyText += "Orden de compra - ZER Sinergias\n\n";
-      bodyText += "Datos del cliente:\n";
-      bodyText += `Nombre: ${name}\n`;
-      bodyText += `Teléfono: ${phone}\n`;
-      bodyText += `Dirección: ${address}\n`;
-      bodyText += `Correo: ${email}\n\n`;
-      bodyText += "Detalle del pedido:\n";
-      bodyText += orderLines + "\n";
-      bodyText += `Total: S/ ${total.toFixed(2)}\n\n`;
-      bodyText += "Métodos de pago:\n";
-      bodyText += "- Bizum: 954118198\n";
-      bodyText += "- Cuenta BCP: 1956846184969\n\n";
-      bodyText += "Una vez realizado el pago, por favor envía el comprobante respondiendo este correo.";
+      // URL de tu Web App de Apps Script (cámbiala por la tuya)
+      const endpoint = "https://script.google.com/macros/s/AKfycbxlkrr_kcIxFj_5Pd1Wyo976brjBP6OELFI0oD3ECeyA5HM7cKlIorQ01alBuWKzjDAJw/exec";
 
-      // ⚠️ Cambia este correo por el de tu tienda:
-      const storeEmail = "ernesto.gianino@gmail.com";
+      try {
+        const resp = await fetch(endpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name,
+            phone,
+            address,
+            email,
+            orderLines,
+            total,
+          }),
+        });
 
-      const subject = encodeURIComponent("Nueva orden de compra - ZER Sinergias");
-      const body = encodeURIComponent(bodyText);
+        const data = await resp.json();
 
-      // Abre el cliente de correo del usuario con la orden y métodos de pago
-      window.location.href = `mailto:${storeEmail}?subject=${subject}&body=${body}`;
+        if (data.success) {
+          orderConfirmation.classList.remove("hidden");
+          orderForm.scrollIntoView({ behavior: "smooth", block: "center" });
 
-      // Mensaje en la web
-      orderConfirmation.classList.remove("hidden");
-      orderForm.scrollIntoView({ behavior: "smooth", block: "center" });
-
-      // Opcional: limpiar carrito después de generar el correo
-      // for (const key in cart) { delete cart[key]; }
-      // updateCartIndicators();
-      // renderCart();
+          // (Opcional) limpiar carrito
+          // for (const key in cart) delete cart[key];
+          // updateCartIndicators();
+          // renderCart();
+        } else {
+          alert("Hubo un problema al enviar el correo. Inténtalo de nuevo.");
+        }
+      } catch (err) {
+        console.error(err);
+        alert("No se pudo contactar con el servidor. Revisa la URL del Apps Script.");
+      }
     });
 
     /**************
@@ -637,4 +558,6 @@
   </script>
 </body>
 </html>
+
+
 
