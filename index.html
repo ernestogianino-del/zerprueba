@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZER · E-commerce</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f7f0e8;
+    }
+    .carousel-track {
+      transition: transform 0.6s ease-in-out;
+    }
+  </style>
+</head>
+<body class="text-stone-900">
+
+  <!-- NAVBAR -->
+  <header class="bg-[#f4e6d7] border-b border-[#e3c8ac]">
+    <div class="max-w-6xl mx-auto flex items-center justify-between px-4 py-4">
+      <div class="flex items-center gap-3">
+        <button class="lg:hidden p-2 border rounded-md border-stone-300">
+          <span class="block w-5 h-[2px] bg-stone-700 mb-1"></span>
+          <span class="block w-5 h-[2px] bg-stone-700 mb-1"></span>
+          <span class="block w-5 h-[2px] bg-stone-700"></span>
+        </button>
+        <div>
+          <div class="text-xl tracking-[0.25em] uppercase text-[#a0503b] font-semibold">
+            zer
+          </div>
+          <p class="text-xs tracking-[0.3em] uppercase text-stone-500">
+            sinergias
+          </p>
+        </div>
+      </div>
+
+      <button
+        id="cartButton"
+        class="flex items-center gap-2 px-3 py-2 border border-stone-300 rounded-full text-xs tracking-[0.2em] uppercase">
+        <span>Carrito</span>
+        <span id="cartCount" class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-[#a0503b] text-white text-xs">
+          0
+        </span>
+      </button>
+    </div>
+  </header>
+
+  <!-- CARRUSEL -->
+  <section class="bg-gradient-to-b from-[#f4e6d7] to-[#b55b3d]">
+    <div class="max-w-6xl mx-auto px-4 py-8">
+      <div class="relative overflow-hidden rounded-xl shadow-lg">
+        <div id="carouselTrack" class="carousel-track flex w-full">
+          <!-- Slide 1 -->
+          <div class="min-w-full h-56 sm:h-72 md:h-80 lg:h-96 bg-cover bg-center"
+               style="background-image:url('https://images.pexels.com/photos/3736397/pexels-photo-3736397.jpeg?auto=compress&cs=tinysrgb&w=1200');">
+          </div>
+          <!-- Slide 2 -->
+          <div class="min-w-full h-56 sm:h-72 md:h-80 lg:h-96 bg-cover bg-center"
+               style="background-image:url('https://images.pexels.com/photos/3738379/pexels-photo-3738379.jpeg?auto=compress&cs=tinysrgb&w=1200');">
+          </div>
+          <!-- Slide 3 -->
+          <div class="min-w-full h-56 sm:h-72 md:h-80 lg:h-96 bg-cover bg-center"
+               style="background-image:url('https://images.pexels.com/photos/3736398/pexels-photo-3736398.jpeg?auto=compress&cs=tinysrgb&w=1200');">
+          </div>
+        </div>
+
+        <!-- Controles -->
+        <button id="prevSlide"
+          class="absolute left-3 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white shadow rounded-full p-2 text-sm">
+          ‹
+        </button>
+        <button id="nextSlide"
+          class="absolute right-3 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white shadow rounded-full p-2 text-sm">
+          ›
+        </button>
+
+        <div class="absolute bottom-3 left-0 right-0 flex justify-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-white/80"></span>
+          <span class="w-2 h-2 rounded-full bg-white/40"></span>
+          <span class="w-2 h-2 rounded-full bg-white/40"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFICIOS -->
+  <section class="bg-[#b55b3d] text-[#fbeee0] text-xs tracking-[0.2em] uppercase">
+    <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 divide-x divide-[#e3c8ac]/40">
+      <div class="px-4 py-3 text-center">Hecho 100% con productos Just</div>
+      <div class="px-4 py-3 text-center">Envíos a domicilio</div>
+      <div class="px-4 py-3 text-center">Descuentos por volumen</div>
+      <div class="px-4 py-3 text-center">Sinergias a pedido</div>
+    </div>
+  </section>
+
+  <!-- BUSCADOR + PRODUCTOS -->
+  <main class="max-w-6xl mx-auto px-4 py-10">
+    <!-- Buscador -->
+    <div class="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+      <h2 class="text-lg font-semibold tracking-[0.2em] uppercase text-stone-700">
+        Catálogo
+      </h2>
+      <div class="relative w-full sm:w-72">
+        <input
+          id="searchInput"
+          type="text"
+          placeholder="Buscar producto..."
+          class="w-full rounded-full border border-stone-300 bg-white/80 px-4 py-2 pl-10 text-sm focus:outline-none focus:ring-2 focus:ring-[#a0503b]/60" />
+        <span class="absolute left-3 top-1/2 -translate-y-1/2 text-stone-400 text-sm">🔍</span>
+      </div>
+    </div>
+
+    <!-- Grid productos -->
+    <div id="productsGrid"
+         class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5">
+      <!-- Se llena con JS -->
+    </div>
+  </main>
+
+  <!-- CARRITO (PANEL) -->
+  <div id="cartPanel"
+       class="fixed inset-x-0 bottom-0 sm:inset-y-0 sm:right-0 sm:left-auto sm:w-96 bg-white border-t sm:border-l border-stone-200 shadow-xl translate-y-full sm:translate-y-0 sm:translate-x-full transition-transform duration-300 z-40">
+    <div class="flex items-center justify-between px-4 py-3 border-b border-stone-200 bg-[#f4e6d7]">
+      <h3 class="text-sm font-semibold tracking-[0.2em] uppercase text-stone-700">Carrito</h3>
+      <button id="closeCart" class="text-sm text-stone-500 hover:text-stone-700">✕</button>
+    </div>
+
+    <div class="p-4 max-h-[60vh] sm:max-h-[80vh] overflow-y-auto">
+      <div id="cartItems" class="space-y-3 text-sm">
+        <!-- Items del carrito -->
+      </div>
+      <div class="mt-4 border-t border-stone-200 pt-3 flex items-center justify-between text-sm font-medium">
+        <span>Total:</span>
+        <span id="cartTotal">S/ 0.00</span>
+      </div>
+
+      <button
+        id="checkoutBtn"
+        class="mt-4 w-full bg-[#a0503b] text-white text-xs tracking-[0.25em] uppercase py-3 rounded-full hover:bg-[#813f30]">
+        Realizar pedido
+      </button>
+    </div>
+  </div>
+
+  <!-- BOTÓN FLOTANTE VER CARRITO (MÓVIL) -->
+  <button id="floatingCartBtn"
+    class="fixed right-4 bottom-4 sm:hidden shadow-lg rounded-full bg-[#a0503b] text-white px-4 py-3 flex items-center gap-2 text-xs tracking-[0.2em] uppercase">
+    <span>Carrito</span>
+    <span id="cartCountFloat"
+          class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-white/20 text-xs">
+      0
+    </span>
+  </button>
+
+  <!-- MODAL DE DATOS DEL CLIENTE -->
+  <div id="orderOverlay"
+       class="fixed inset-0 bg-black/40 hidden items-center justify-center z-50">
+    <div class="bg-[#fdf7f0] rounded-2xl shadow-xl max-w-md w-full mx-4 p-6 relative">
+      <button id="closeOrderModal" class="absolute right-4 top-3 text-stone-400 hover:text-stone-700 text-sm">
+        ✕
+      </button>
+
+      <h3 class="text-sm font-semibold tracking-[0.25em] uppercase text-stone-700 mb-2">
+        Datos para tu pedido
+      </h3>
+      <p class="text-xs text-stone-600 mb-4">
+        Te enviamos por correo el método de pago y la orden de compra. Completa tus datos:
+      </p>
+
+      <form id="orderForm" class="space-y-3 text-sm">
+        <div>
+          <label class="block text-xs text-stone-600 mb-1">Nombre completo</label>
+          <input type="text" id="customerName" class="w-full border border-stone-300 rounded-full px-3 py-2 bg-white/90"
+                 required />
+        </div>
+        <div>
+          <label class="block text-xs text-stone-600 mb-1">Número de teléfono</label>
+          <input type="tel" id="customerPhone" class="w-full border border-stone-300 rounded-full px-3 py-2 bg-white/90"
+                 required />
+        </div>
+        <div>
+          <label class="block text-xs text-stone-600 mb-1">Dirección</label>
+          <input type="text" id="customerAddress" class="w-full border border-stone-300 rounded-full px-3 py-2 bg-white/90"
+                 required />
+        </div>
+        <div>
+          <label class="block text-xs text-stone-600 mb-1">Correo electrónico</label>
+          <input type="email" id="customerEmail" class="w-full border border-stone-300 rounded-full px-3 py-2 bg-white/90"
+                 required />
+        </div>
+
+        <p class="text-[11px] text-stone-600 mt-3">
+          Métodos de pago:
+          <br>• Bizum: <span class="font-semibold">954 118 198</span>
+          <br>• Cuenta BCP: <span class="font-semibold">1956846184969</span>
+        </p>
+
+        <button
+          type="submit"
+          class="mt-4 w-full bg-[#a0503b] text-white text-xs tracking-[0.25em] uppercase py-2.5 rounded-full hover:bg-[#813f30]">
+          Confirmar pedido
+        </button>
+
+        <p id="orderConfirmation"
+           class="hidden text-[11px] text-emerald-700 mt-3 bg-emerald-50 border border-emerald-100 rounded-lg px-3 py-2">
+          Te enviamos por correo el método de pago y la orden de compra.
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="mt-12 border-t border-[#e3c8ac] bg-[#f4e6d7] text-xs">
+    <div class="max-w-6xl mx-auto px-4 py-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <div>
+        <div class="text-lg tracking-[0.25em] uppercase text-[#a0503b] font-semibold">
+          zer
+        </div>
+        <p class="text-[10px] tracking-[0.3em] uppercase text-stone-500">
+          sinergias
+        </p>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-1">Contacto:</h4>
+        <p>WhatsApp: 954 118 198</p>
+        <p class="text-stone-500 text-[11px] mt-1">
+          100% productos originales Just®.
+        </p>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-1">Redes:</h4>
+        <p>@zersinergias</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- LÓGICA JS -->
+  <script>
+    /*******************
+     * DATOS PRODUCTOS *
+     *******************/
+    const products = [
+      {
+        id: "p1",
+        name: "Sinergia Felicidad",
+        size: "10 ml",
+        price: 30,
+        image:
+          "https://images.pexels.com/photos/3736402/pexels-photo-3736402.jpeg?auto=compress&cs=tinysrgb&w=800",
+      },
+      {
+        id: "p2",
+        name: "Sinergia Equilibrio",
+        size: "10 ml",
+        price: 30,
+        image:
+          "https://images.pexels.com/photos/3738374/pexels-photo-3738374.jpeg?auto=compress&cs=tinysrgb&w=800",
+      },
+      {
+        id: "p3",
+        name: "Sinergia Creatividad",
+        size: "10 ml",
+        price: 30,
+        image:
+          "https://images.pexels.com/photos/3738340/pexels-photo-3738340.jpeg?auto=compress&cs=tinysrgb&w=800",
+      },
+      {
+        id: "p4",
+        name: "Sinergia Tranquilidad",
+        size: "10 ml",
+        price: 30,
+        image:
+          "https://images.pexels.com/photos/3736401/pexels-photo-3736401.jpeg?auto=compress&cs=tinysrgb&w=800",
+      },
+      {
+        id: "p5",
+        name: "Aceite Esencial Just Lavanda",
+        size: "10 ml",
+        price: 90,
+        image:
+          "https://images.pexels.com/photos/965989/pexels-photo-965989.jpeg?auto=compress&cs=tinysrgb&w=800",
+      },
+      {
+        id: "p6",
+        name: "Aceite Esencial Just Neroli",
+        size: "10 ml",
+        price: 90,
+        image:
+          "https://images.pexels.com/photos/3735712/pexels-photo-3735712.jpeg?auto=compress&cs=tinysrgb&w=800",
+      },
+      {
+        id: "p7",
+        name: "Aceite Esencial Just Tea Tree",
+        size: "10 ml",
+        price: 90,
+        image:
+          "https://images.pexels.com/photos/965981/pexels-photo-965981.jpeg?auto=compress&cs=tinysrgb&w=800",
+      },
+      {
+        id: "p8",
+        name: "Aceite Esencial Just Tomillo",
+        size: "10 ml",
+        price: 90,
+        image:
+          "https://images.pexels.com/photos/965989/pexels-photo-965989.jpeg?auto=compress&cs=tinysrgb&w=800",
+      },
+      {
+        id: "p9",
+        name: "Aceite Esencial Just Naranja",
+        size: "10 ml",
+        price: 90,
+        image:
+          "https://images.pexels.com/photos/965989/pexels-photo-965989.jpeg?auto=compress&cs=tinysrgb&w=800",
+      },
+      {
+        id: "p10",
+        name: "Aceite Esencial Just Tres Mentas",
+        size: "10 ml",
+        price: 90,
+        image:
+          "https://images.pexels.com/photos/965991/pexels-photo-965991.jpeg?auto=compress&cs=tinysrgb&w=800",
+      },
+      {
+        id: "p11",
+        name: "Aceite Esencial Just Bergamota",
+        size: "10 ml",
+        price: 90,
+        image:
+          "https://images.pexels.com/photos/965989/pexels-photo-965989.jpeg?auto=compress&cs=tinysrgb&w=800",
+      },
+      {
+        id: "p12",
+        name: "Aceite Esencial Just Tomillo Plus",
+        size: "10 ml",
+        price: 90,
+        image:
+          "https://images.pexels.com/photos/965989/pexels-photo-965989.jpeg?auto=compress&cs=tinysrgb&w=800",
+      },
+    ];
+
+    /*******************
+     * RENDER PRODUCTOS *
+     *******************/
+    const productsGrid = document.getElementById("productsGrid");
+
+    function renderProducts(list) {
+      productsGrid.innerHTML = "";
+      list.forEach((p) => {
+        const card = document.createElement("article");
+        card.className =
+          "bg-[#f4e6d7] border border-[#e3c8ac] rounded-xl overflow-hidden flex flex-col shadow-sm";
+
+        card.innerHTML = `
+          <div class="aspect-[3/4] bg-stone-200">
+            <img src="${p.image}"
+                 alt="${p.name}"
+                 class="w-full h-full object-cover" />
+          </div>
+          <div class="px-3 py-2 mt-auto">
+            <p class="text-[10px] tracking-[0.25em] uppercase text-stone-500">${p.size}</p>
+            <h3 class="mt-1 text-sm font-semibold text-stone-800">${p.name}</h3>
+            <div class="mt-2 flex items-center justify-between">
+              <span class="text-xs tracking-[0.25em] uppercase text-stone-600">S/ ${p.price.toFixed(
+                2
+              )}</span>
+              <button
+                data-id="${p.id}"
+                class="addToCart text-[10px] uppercase tracking-[0.2em] border border-stone-400 px-2 py-1 rounded-full hover:bg-stone-900 hover:text-white">
+                Agregar
+              </button>
+            </div>
+          </div>
+        `;
+        productsGrid.appendChild(card);
+      });
+
+      // Listeners "Agregar"
+      document.querySelectorAll(".addToCart").forEach((btn) =>
+        btn.addEventListener("click", () => {
+          const id = btn.getAttribute("data-id");
+          addToCart(id);
+        })
+      );
+    }
+
+    renderProducts(products);
+
+    /**************
+     * BUSCADOR   *
+     **************/
+    const searchInput = document.getElementById("searchInput");
+    searchInput.addEventListener("input", (e) => {
+      const q = e.target.value.toLowerCase();
+      const filtered = products.filter((p) =>
+        p.name.toLowerCase().includes(q)
+      );
+      renderProducts(filtered);
+    });
+
+    /**************
+     * CARRITO    *
+     **************/
+    const cart = {}; // { id: { product, qty } }
+
+    const cartCount = document.getElementById("cartCount");
+    const cartCountFloat = document.getElementById("cartCountFloat");
+    const cartItems = document.getElementById("cartItems");
+    const cartTotal = document.getElementById("cartTotal");
+
+    function updateCartIndicators() {
+      const totalItems = Object.values(cart).reduce(
+        (sum, item) => sum + item.qty,
+        0
+      );
+      cartCount.textContent = totalItems;
+      cartCountFloat.textContent = totalItems;
+    }
+
+    function renderCart() {
+      cartItems.innerHTML = "";
+      let total = 0;
+      const entries = Object.values(cart);
+
+      if (entries.length === 0) {
+        cartItems.innerHTML =
+          '<p class="text-sm text-stone-500">Tu carrito está vacío.</p>';
+        cartTotal.textContent = "S/ 0.00";
+        return;
+      }
+
+      entries.forEach(({ product, qty }) => {
+        const itemTotal = product.price * qty;
+        total += itemTotal;
+
+        const row = document.createElement("div");
+        row.className = "flex items-start justify-between gap-2";
+
+        row.innerHTML = `
+          <div>
+            <p class="text-sm font-medium">${product.name}</p>
+            <p class="text-xs text-stone-500">${product.size}</p>
+            <p class="text-xs text-stone-600 mt-1">S/ ${product.price.toFixed(
+              2
+            )} c/u</p>
+          </div>
+          <div class="text-right">
+            <div class="flex items-center justify-end gap-1 mb-1">
+              <button data-id="${product.id}" class="decQty px-2 rounded-full border text-xs">-</button>
+              <span class="text-sm w-5 text-center">${qty}</span>
+              <button data-id="${product.id}" class="incQty px-2 rounded-full border text-xs">+</button>
+            </div>
+            <p class="text-xs font-semibold">S/ ${itemTotal.toFixed(2)}</p>
+          </div>
+        `;
+        cartItems.appendChild(row);
+      });
+
+      cartTotal.textContent = "S/ " + total.toFixed(2);
+
+      cartItems.querySelectorAll(".incQty").forEach((b) =>
+        b.addEventListener("click", () => {
+          const id = b.getAttribute("data-id");
+          cart[id].qty++;
+          updateCartIndicators();
+          renderCart();
+        })
+      );
+      cartItems.querySelectorAll(".decQty").forEach((b) =>
+        b.addEventListener("click", () => {
+          const id = b.getAttribute("data-id");
+          cart[id].qty--;
+          if (cart[id].qty <= 0) delete cart[id];
+          updateCartIndicators();
+          renderCart();
+        })
+      );
+    }
+
+    function addToCart(id) {
+      const product = products.find((p) => p.id === id);
+      if (!product) return;
+      if (!cart[id]) cart[id] = { product, qty: 0 };
+      cart[id].qty++;
+      updateCartIndicators();
+      renderCart();
+      openCartPanel();
+    }
+
+    /**********************
+     * PANEL DEL CARRITO  *
+     **********************/
+    const cartPanel = document.getElementById("cartPanel");
+    const cartButton = document.getElementById("cartButton");
+    const floatingCartBtn = document.getElementById("floatingCartBtn");
+    const closeCart = document.getElementById("closeCart");
+
+    function openCartPanel() {
+      cartPanel.classList.remove("translate-y-full", "sm:translate-x-full");
+    }
+
+    function closeCartPanel() {
+      cartPanel.classList.add("translate-y-full", "sm:translate-x-full");
+    }
+
+    cartButton.addEventListener("click", openCartPanel);
+    floatingCartBtn.addEventListener("click", openCartPanel);
+    closeCart.addEventListener("click", closeCartPanel);
+
+    /********************
+     * MODAL PEDIDO     *
+     ********************/
+    const checkoutBtn = document.getElementById("checkoutBtn");
+    const orderOverlay = document.getElementById("orderOverlay");
+    const closeOrderModal = document.getElementById("closeOrderModal");
+    const orderForm = document.getElementById("orderForm");
+    const orderConfirmation = document.getElementById("orderConfirmation");
+
+    function openOrderModal() {
+      const entries = Object.values(cart);
+      if (entries.length === 0) {
+        alert("Tu carrito está vacío.");
+        return;
+      }
+      orderOverlay.classList.remove("hidden");
+      orderOverlay.classList.add("flex");
+      orderConfirmation.classList.add("hidden");
+    }
+
+    function closeOrderModalFn() {
+      orderOverlay.classList.add("hidden");
+      orderOverlay.classList.remove("flex");
+    }
+
+    checkoutBtn.addEventListener("click", openOrderModal);
+    closeOrderModal.addEventListener("click", closeOrderModalFn);
+    orderOverlay.addEventListener("click", (e) => {
+      if (e.target === orderOverlay) closeOrderModalFn();
+    });
+
+    /*************************
+     * ENVÍO POR CORREO (mailto)
+     * Aquí se arma la ORDEN
+     *************************/
+    orderForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById("customerName").value.trim();
+      const phone = document.getElementById("customerPhone").value.trim();
+      const address = document.getElementById("customerAddress").value.trim();
+      const email = document.getElementById("customerEmail").value.trim();
+
+      if (!name || !phone || !address || !email) {
+        alert("Por favor completa todos los datos.");
+        return;
+      }
+
+      const entries = Object.values(cart);
+      if (entries.length === 0) {
+        alert("Tu carrito está vacío.");
+        return;
+      }
+
+      let total = 0;
+      let orderLines = "";
+      entries.forEach(({ product, qty }) => {
+        const lineTotal = product.price * qty;
+        total += lineTotal;
+        orderLines += `• ${product.name} (${product.size}) x${qty} = S/ ${lineTotal.toFixed(2)}\n`;
+      });
+
+      let bodyText = "";
+      bodyText += "Orden de compra - ZER Sinergias\n\n";
+      bodyText += "Datos del cliente:\n";
+      bodyText += `Nombre: ${name}\n`;
+      bodyText += `Teléfono: ${phone}\n`;
+      bodyText += `Dirección: ${address}\n`;
+      bodyText += `Correo: ${email}\n\n`;
+      bodyText += "Detalle del pedido:\n";
+      bodyText += orderLines + "\n";
+      bodyText += `Total: S/ ${total.toFixed(2)}\n\n`;
+      bodyText += "Métodos de pago:\n";
+      bodyText += "- Bizum: 954118198\n";
+      bodyText += "- Cuenta BCP: 1956846184969\n\n";
+      bodyText += "Una vez realizado el pago, por favor envía el comprobante respondiendo este correo.";
+
+      // ⚠️ Cambia este correo por el de tu tienda:
+      const storeEmail = "tucorreo@zersinergias.com";
+
+      const subject = encodeURIComponent("Nueva orden de compra - ZER Sinergias");
+      const body = encodeURIComponent(bodyText);
+
+      // Abre el cliente de correo del usuario con la orden y métodos de pago
+      window.location.href = `mailto:${storeEmail}?subject=${subject}&body=${body}`;
+
+      // Mensaje en la web
+      orderConfirmation.classList.remove("hidden");
+      orderForm.scrollIntoView({ behavior: "smooth", block: "center" });
+
+      // Opcional: limpiar carrito después de generar el correo
+      // for (const key in cart) { delete cart[key]; }
+      // updateCartIndicators();
+      // renderCart();
+    });
+
+    /**************
+     * CARRUSEL   *
+     **************/
+    const carouselTrack = document.getElementById("carouselTrack");
+    const prevSlide = document.getElementById("prevSlide");
+    const nextSlide = document.getElementById("nextSlide");
+    const totalSlides = 3;
+    let currentSlide = 0;
+
+    function updateCarousel() {
+      carouselTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
+    }
+
+    nextSlide.addEventListener("click", () => {
+      currentSlide = (currentSlide + 1) % totalSlides;
+      updateCarousel();
+    });
+
+    prevSlide.addEventListener("click", () => {
+      currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+      updateCarousel();
+    });
+
+    setInterval(() => {
+      currentSlide = (currentSlide + 1) % totalSlides;
+      updateCarousel();
+    }, 6500);
+  </script>
+</body>
+</html>
